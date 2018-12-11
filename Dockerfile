@@ -1,13 +1,10 @@
-FROM golang:stretch
-MAINTAINER GYKIM
+FROM alpine:3.7
 
-ENV SOURCES /go/src/github.com/gy-kim/getting-started-with-cloud-native-go
+COPY ./getting-started-with-cloud-native-go /app/Cloud-Native-Go
 
-COPY . ${SOURCES}
-
-RUN cd ${SOURCES} && CGO_ENABLED=0 go install
+RUN chmod +x /app/Cloud-Native-Go
 
 ENV PORT 8080
 EXPOSE 8080
 
-ENTRYPOINT getting-started-with-cloud-native-go
+ENTRYPOINT /app/Cloud-Native-Go
